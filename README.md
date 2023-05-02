@@ -79,3 +79,5 @@ By examining the coefficients of the Lasso Regression model, we can see that the
 The comparison chart between the features is included below:
 
 ![Feature Comparison Chart](/img/features.png)
+
+The high importance of these features may be due to the fact that they are directly related to the capacity and performance of the battery. The discharge capacity is a direct measure of the battery's energy storage capacity, while the voltage change during cycling is related to the electrochemical reactions occurring in the battery. Understanding the relationship between these features and SoH can help in the development of better battery management systems and predictive maintenance strategies.
