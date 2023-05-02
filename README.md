@@ -58,7 +58,13 @@ The following table summarizes the performance of the five models on the SoH pre
 | Gaussian          | {'alpha': 0.1, 'kernel__length_scale': 0.01}                | 0.00014711829093236537 | 0.00016082866805543846 |
 | Lasso Regression  | {'alpha': 0.01}                                             | 3.4181754323117102e-06 | 3.5052655927481366e-06 |
 
-The models are ranked in order of best to worst based on their performance on the test set.
+Ranking the models based on performance from best to worst:
+
+1. Ridge
+2. Lasso
+3. Random Forest
+4. Gaussian
+5. Deep Learning
 
 ### Fitting
 
