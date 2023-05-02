@@ -1,5 +1,5 @@
 # Lithium-Ion Battery State of Health (SoH) Prediction
-
+The goal for this project is to try predicting the State of Health of LiNiMnCo/Graphite cells for the ELE522 course.
 This repository contains notebooks demonstrating the implementation of five different machine learning models for predicting the SoH of LiNiMnCo/Graphite cells based on various features. The notebooks are as follows:
 
 - `lasso_regression.ipynb`: lasso regression model
@@ -46,4 +46,36 @@ The specific LiNiMnCo/Graphite cells studied in this project are commonly used i
 
 ## Results and Conclusion
 
-TBD
+### Model Comparison
+
+The following table summarizes the performance of the five models on the SoH prediction task:
+
+| Model             | Best Hyperparameters                                        | Best Score        | MSE on Test Set   |
+|-------------------|-------------------------------------------------------------|-------------------|-------------------|
+| Ridge Regression  | {'alpha': 1}                                                | 7.010986702753861e-07 | 5.61465748160752e-07 |
+| Deep Learning     | -                                                           | -                 | 0.3512989889333423 |
+| Random Forest     | {'max_depth': None, 'min_samples_leaf': 2, 'min_samples_split': 2, 'n_estimators': 100} | 1.5780307468199424e-05 | 3.7850288454312208e-06 |
+| Gaussian          | {'alpha': 0.1, 'kernel__length_scale': 0.01}                | 0.00014711829093236537 | 0.00016082866805543846 |
+| Lasso Regression  | {'alpha': 0.01}                                             | 3.4181754323117102e-06 | 3.5052655927481366e-06 |
+
+The models are ranked in order of best to worst based on their performance on the test set.
+
+### Fitting
+
+Looking at the results of the Ridge Regression model, we can see that the model is not overfitting. The learning and validation curves are included below:
+
+![Ridge Regression Learning Curve](/img/learning_curve.png)
+
+![Ridge Regression Validation Curve](/img/validation_curve.png)
+
+### Feature Engineering
+
+By examining the coefficients of the Lasso Regression model, we can see that the two most important features for predicting SoH are `Discharge_Q` (major predictor) and `Capacity dV CCCT` (minor predictor). 
+
+`Discharge_Q` represents the discharge capacity of the battery, or the amount of charge that can be extracted from the battery under certain conditions. As the battery ages, its capacity decreases, leading to a decrease in SoH. Therefore, it makes sense that this feature would be a major predictor of SoH.
+
+`Capacity dV CCCT` represents the change in voltage during a discharge cycle, and is used as a measure of capacity fade. As the battery ages, its capacity decreases, leading to a decrease in voltage during discharge. Therefore, it also makes sense that this feature would be a predictor of SoH.
+
+The comparison chart between the features is included below:
+
+![Feature Comparison Chart](/img/features.png)
